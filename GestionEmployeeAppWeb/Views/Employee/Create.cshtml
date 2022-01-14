@@ -1,0 +1,49 @@
+﻿@model GestionEmployeeAppWeb.Models.Employee
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h4 class="text-center"><i class="fas fa-plus-circle"></i> Nouveau </h4>
+
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <form asp-action="AddEmployees">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <input type="hidden" asp-for="EmpId" />
+                <label asp-for="EmpNom" class="control-label"></label>
+                <input asp-for="EmpNom" class="form-control" />
+                <span asp-validation-for="EmpNom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmpPrenom" class="control-label"></label>
+                <input asp-for="EmpPrenom" class="form-control" />
+                <span asp-validation-for="EmpPrenom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Age" class="control-label"></label>
+                <input asp-for="Age" class="form-control" />
+                <span asp-validation-for="Age" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DepId" class="control-label"></label>
+                <select asp-for="DepId" class="form-control" asp-items="@(new SelectList(ViewBag.DepList, "DepId", "DepartementName"))">
+                </select>
+            </div>
+            <div class="form-group float-right">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-action="EmployeeList" class="btn btn-outline-success"><i class="fas fa-arrow-circle-left"></i> Employees</a>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

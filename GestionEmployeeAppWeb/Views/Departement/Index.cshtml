@@ -1,0 +1,41 @@
+﻿@model IEnumerable<GestionEmployeeAppWeb.Models.Departements>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="mt-5 mb-2 row col-md-12">
+    <div class="col-md-11 float-left">
+        <h4><i class="fas fa-list-ul"></i> Departements</h4>
+    </div>
+    <div class="col-md-1 float-right">
+        <a asp-action="Create" class="btn btn-outline-primary"><i class="fas fa-plus-square"></i> Nouveau</a>
+    </div>
+</div>
+
+<div class="table-responsive col-md-12">
+    <table class="table table table-sm" id="listEmp">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.DepartementName)
+                </th>
+                <th colspan="2" class="text-right">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DepartementName)
+                    </td>
+                    <td class="float-right">
+                        @Html.ActionLink("Modifier", "Create", new { DepId = item.DepId, item.DepartementName }, new { @class = "btn btn-success btn-sm" }) |
+                        @Html.ActionLink("Supprimer", "DeleteDepartement", new { id = item.DepId, }, new { @class = "btn btn-danger btn-sm", onclick = "return confirm('Do you really want to delete this record ?')" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
